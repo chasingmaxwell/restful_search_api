@@ -110,13 +110,8 @@ abstract class RestfulDataProviderSearchAPI extends \RestfulBase implements \Res
     $request = $this->getRequest();
     // Construct the options array.
 
-    // limit: The maximum number of search results to return. -1 means no limit.
-    $options['limit'] = $this->getRange();
-
-    // offset: The position of the first returned search results relative to the
-    // whole result in the index.
-    $page = empty($request['page']) ? 0 : $request['page'];
-    $options['offset'] = $options['limit'] * $page;
+    // Set offset and limit.
+    list($options['offset'], $options['limit']) = $this->parseRequestForListPagination();
 
     try {
       // Query SearchAPI for the results
