@@ -107,7 +107,6 @@ abstract class RestfulDataProviderSearchAPI extends \RestfulBase implements \Res
   public function view($id) {
     // In this case the ID is the search query.
     $options = $output = array();
-    $request = $this->getRequest();
     // Construct the options array.
 
     // Set the following options:
